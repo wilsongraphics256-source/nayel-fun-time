@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffbf2">
+  <title>NAYEL FUN TIME | Learn, Play, Think, Win!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-button home-icon" id="home-button" aria-label="Go to home">⌂</button>
+      <div class="currency-bar" aria-label="Player resources">
+        <span class="currency coin">◉ <strong>37,060</strong></span>
+        <span class="currency gem">◆ <strong>20,000</strong></span>
+      </div>
+      <button class="icon-button settings-icon" id="settings-button" aria-label="Open settings">⚙</button>
+      <button class="icon-button sound-icon" id="sound-button" aria-label="Toggle sound" aria-pressed="true">🔊</button>
+    </header>
+
+    <main>
+      <section class="screen active" id="home-screen" aria-labelledby="home-title">
+        <button class="player-strip" id="player-profile-button" type="button" aria-label="Register or edit player name">
+          <span class="avatar" aria-hidden="true">👤</span>
+          <strong id="player-name">Player Name</strong>
+          <span class="trophies" aria-label="Three trophies">🏆 🏆 🏆</span>
+        </button>
+
+        <div class="hero-copy">
+          <span class="eyebrow">NAYEL FUN TIME</span>
+          <h1 id="home-title">Word<br><em>Puzzle</em></h1>
+          <p>Unscramble school words, follow the clues and collect stars as you learn.</p>
+        </div>
+
+        <div class="event-banner" aria-label="Word Puzzle progress">
+          <span class="target-icon" aria-hidden="true">🎯</span>
+          <div><strong>Word Puzzle</strong><small>Level 1 : 5</small></div>
+          <button class="pass-badge" type="button">55 <span>Pass<br>Battle</span></button>
+        </div>
+
+        <div class="home-grid">
+          <div class="play-panel">
+            <div class="play-icon" aria-hidden="true">🎯</div>
+            <div>
+              <p class="panel-kicker">WORD SCRAMBLE</p>
+              <h2>Ready for a brain boost?</h2>
+              <p class="muted">You have 60 seconds and three chances. You can do it!</p>
+            </div>
+            <button class="primary-button" id="play-button"><span>▶</span> PLAY NOW</button>
+          </div>
+
+          <div class="class-panel">
+            <div class="section-heading"><div><p class="panel-kicker">YOUR LEVEL</p><h2>Choose class</h2></div><span class="class-badge" id="selected-class-label">P1</span></div>
+            <div class="class-grid" role="group" aria-label="Choose primary class">
+              <button class="class-button selected" data-class="1">P1</button>
+              <button class="class-button" data-class="2">P2</button>
+              <button class="class-button" data-class="3">P3</button>
+              <button class="class-button" data-class="4">P4</button>
+              <button class="class-button" data-class="5">P5</button>
+              <button class="class-button" data-class="6">P6</button>
+              <button class="class-button" data-class="7">P7</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+          <button class="action-card" id="high-score-button"><span>🏆</span><strong>HIGH SCORE</strong><small id="home-high-score">0 points</small></button>
+          <button class="action-card" id="settings-card"><span>⚙️</span><strong>SETTINGS</strong><small>Make it yours</small></button>
+        </div>
+      </section>
+
+      <section class="screen" id="game-screen" aria-labelledby="game-title">
+        <div class="game-intro"><div><p class="eyebrow" id="game-level">PRIMARY 1</p><h1 id="game-title">Find the word!</h1></div><span class="difficulty-pill" id="difficulty-label">EASY</span></div>
+        <div class="score-row">
+          <div class="stat-chip"><span>⭐</span><div><small>SCORE</small><strong id="score-value">0</strong></div></div>
+          <div class="stat-chip"><span>❤️</span><div><small>LIVES</small><strong id="lives-value">3</strong></div></div>
+          <div class="stat-chip"><span>⏱️</span><div><small>TIME</small><strong id="time-value">60</strong></div></div>
+        </div>
+        <div class="progress-wrap"><div class="progress-meta"><span id="question-label">Question 1 of 15</span><span id="progress-percent">0%</span></div><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div></div>
+
+        <article class="clue-card" id="clue-card">
+          <div class="clue-topline"><span class="subject-tag" id="subject-label">ENGLISH</span><span class="clue-number" id="clue-number">#01</span></div>
+          <p class="clue-prefix">CAN YOU FIND IT?</p>
+          <h2 id="clue-text">A tool we use to write.</h2>
+          <p class="clue-hint-text" id="clue-hint-text">Think about things you use at school.</p>
+          <div class="scramble-area"><p class="scramble-label">TAP THE LETTERS IN ORDER</p><div class="letter-row" id="letter-row" aria-label="Scrambled word letters"></div></div>
+          <div class="answer-builder"><p class="scramble-label">YOUR ANSWER</p><div class="answer-row" id="answer-row" aria-live="polite"><span class="answer-placeholder">Tap letters above to build the word</span></div></div>
+          <form class="answer-form" id="answer-form">
+            <button class="clear-button" id="clear-answer-button" type="button">↶ CLEAR</button>
+            <button class="check-button" type="submit">CHECK <span>✓</span></button>
+          </form>
+          <p class="feedback" id="feedback" aria-live="polite"></p>
+          <div class="answer-reveal" id="answer-reveal" aria-live="polite" hidden>
+            <span>📚 THE ANSWER IS</span>
+            <strong id="revealed-answer"></strong>
+            <small>Learn it and try the next word!</small>
+            <button class="next-button" id="next-question-button" type="button">NEXT QUESTION <span>→</span></button>
+          </div>
+        </article>
+        <div class="game-tools"><button class="tool-button" id="hint-button">💡 HINT <small>-5 pts</small></button><button class="tool-button" id="shuffle-button">🔀 SHUFFLE</button><button class="tool-button" id="game-home-button">🏠 HOME</button></div>
+      </section>
+
+      <section class="screen" id="result-screen" aria-labelledby="result-title">
+        <div class="result-confetti" aria-hidden="true">✦ ✧ ✦</div>
+        <p class="eyebrow">GAME COMPLETE</p><h1 id="result-title">WELL DONE!</h1><p class="result-message" id="result-message">Every question helps you learn.</p>
+        <div class="result-score"><span>YOUR SCORE</span><strong id="final-score">0</strong><small>points</small></div>
+        <div class="results-grid"><div><strong id="correct-count">0</strong><span>Correct answers</span></div><div><strong id="wrong-count">0</strong><span>Wrong answers</span></div><div><strong id="best-score">0</strong><span>Best score</span></div></div>
+        <div class="result-actions"><button class="primary-button" id="play-again-button">↻ PLAY AGAIN</button><button class="secondary-button" id="result-home-button">⌂ HOME</button></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="modal" id="high-score-modal"><button class="modal-close" data-close="high-score-modal" aria-label="Close high score">×</button><span class="modal-icon">🏆</span><p class="eyebrow">YOUR PROGRESS</p><h2>HIGH SCORE</h2><strong class="modal-score" id="modal-high-score">0</strong><p class="muted">Keep playing to beat your best!</p><button class="primary-button" data-close="high-score-modal">LET'S PLAY</button></dialog>
+  <dialog class="modal settings-modal" id="settings-modal"><button class="modal-close" data-close="settings-modal" aria-label="Close settings">×</button><span class="modal-icon">⚙️</span><p class="eyebrow">MAKE IT YOURS</p><h2>SETTINGS</h2><label class="setting-row"><span>🔊 Sound effects</span><input type="checkbox" id="sound-setting" checked><span class="toggle"></span></label><label class="setting-row"><span>⏱️ Timer</span><input type="checkbox" id="timer-setting" checked><span class="toggle"></span></label><button class="primary-button" data-close="settings-modal">DONE</button></dialog>
+  <dialog class="modal name-modal" id="name-modal"><button class="modal-close" data-close="name-modal" aria-label="Close player registration">×</button><span class="modal-icon">👤</span><p class="eyebrow">WELCOME, PLAYER</p><h2>REGISTER NAME</h2><p class="muted">Choose the name shown on your game profile.</p><form id="name-form"><label class="name-field"><span class="sr-only">Player name</span><input id="name-input" name="playerName" type="text" maxlength="18" autocomplete="nickname" placeholder="Enter your name" required></label><button class="primary-button" type="submit">SAVE NAME</button></form></dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
