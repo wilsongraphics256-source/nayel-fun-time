@@ -49,7 +49,7 @@ const state = {
   scrambledLetters: [],
   selectedLetters: [],
   hintUsed: false,
-  seconds: 60,
+  seconds: 20,
   timerId: null,
   locked: false,
   soundOn: true,
@@ -167,7 +167,7 @@ function startGame() {
   state.lives = 3;
   state.wrongAnswers = 0;
   state.attempts = 0;
-  state.seconds = 60;
+  state.seconds = 20;
   state.locked = false;
   showScreen('game-screen');
   renderQuestion();
@@ -180,6 +180,7 @@ function renderQuestion() {
   if (!currentQuestion) return finishGame(true);
   state.hintUsed = false;
   state.attempts = 0;
+  state.seconds = 20;
   state.locked = false;
   const total = state.questions.length;
   const progress = Math.round((state.questionIndex / total) * 100);
@@ -209,12 +210,14 @@ function updateStats() {
   $('score-value').textContent = state.score;
   $('lives-value').textContent = state.lives;
   $('time-value').textContent = state.timerOn ? state.seconds : '∞';
+  $('time-stat').classList.toggle('time-warning', state.timerOn && state.seconds <= 5 && state.seconds > 0);
 }
 
 function startTimer() {
   state.timerId = setInterval(() => {
     state.seconds -= 1;
     updateStats();
+    if (state.seconds > 0 && state.seconds <= 5) playTone('warning');
     if (state.seconds <= 0) finishGame(false, 'time');
   }, 1000);
 }
@@ -353,7 +356,7 @@ function playTone(kind) {
   if (!state.soundOn) return;
   try {
     audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
-    const tones = { click: [440, .05], start: [520, .08], correct: [660, .12], wrong: [170, .14], complete: [880, .2] };
+    const tones = { click: [440, .05], start: [520, .08], correct: [660, .12], wrong: [170, .14], warning: [290, .07], complete: [880, .2] };
     const [frequency, duration] = tones[kind] || tones.click;
     const oscillator = audioContext.createOscillator();
     const gain = audioContext.createGain();
