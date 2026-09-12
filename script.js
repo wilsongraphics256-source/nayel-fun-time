@@ -349,7 +349,7 @@ window.addEventListener('appinstalled', () => {
 });
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js'));
+  window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js?v=2'));
 }
 
 function playTone(kind) {
