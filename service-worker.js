@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nayel-fun-time-v3';
+const CACHE_NAME = 'nayel-fun-time-v4';
 const APP_FILES = [
   './',
   './index.html',
