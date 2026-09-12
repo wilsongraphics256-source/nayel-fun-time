@@ -332,6 +332,23 @@ function finishGame(completed, reason) {
 }
 
 let audioContext;
+let installPrompt;
+
+window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault();
+  installPrompt = event;
+  $('install-button').hidden = false;
+});
+
+window.addEventListener('appinstalled', () => {
+  installPrompt = null;
+  $('install-button').hidden = true;
+});
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js'));
+}
+
 function playTone(kind) {
   if (!state.soundOn) return;
   try {
@@ -400,6 +417,13 @@ $('name-form').addEventListener('submit', event => {
 $('sound-button').addEventListener('click', () => { state.soundOn = !state.soundOn; updateSoundControls(); saveSettings(); playTone('click'); });
 $('sound-setting').addEventListener('change', event => { state.soundOn = event.target.checked; updateSoundControls(); saveSettings(); });
 $('timer-setting').addEventListener('change', event => { state.timerOn = event.target.checked; saveSettings(); });
+$('install-button').addEventListener('click', async () => {
+  if (!installPrompt) return;
+  installPrompt.prompt();
+  await installPrompt.userChoice;
+  installPrompt = null;
+  $('install-button').hidden = true;
+});
 document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => closeModal(button.dataset.close)));
 document.querySelectorAll('dialog').forEach(dialog => dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); }));
 
