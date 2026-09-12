@@ -60,6 +60,7 @@ const state = {
 
 const $ = id => document.getElementById(id);
 const screens = document.querySelectorAll('.screen');
+window.addEventListener('load', () => setTimeout(() => $('loading-screen').classList.add('loaded'), 650));
 const settings = loadSettings();
 state.selectedClass = settings.selectedClass;
 state.soundOn = settings.soundOn;

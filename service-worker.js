@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nayel-fun-time-v2';
+const CACHE_NAME = 'nayel-fun-time-v3';
 const APP_FILES = [
   './',
   './index.html',
@@ -6,7 +6,8 @@ const APP_FILES = [
   './script.js',
   './manifest.json',
   './icon-192.svg',
-  './icon-512.svg'
+  './icon-512.svg',
+  './logo.svg'
 ];
 
 self.addEventListener('install', event => {
